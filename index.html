@@ -451,91 +451,160 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-const pdfMobileModal = new bootstrap.Modal(document.createElement('div'));
-document.querySelectorAll('.preview-pdf').forEach(link => {
-    link.addEventListener('click', e => {
-        e.preventDefault();
-        const url = link.dataset.preview;
 
-        // Check if it's a Google Doc/Drive link
-        let embedUrl = url;
-        if (url.includes('docs.google.com')) {
-            embedUrl = url.replace('/edit?usp=sharing', '/preview');
+  <script>
+    const splash = document.getElementById("splash-screen");
+    const progress = document.getElementById("progress-bar");
+    const toggleButton = document.getElementById("sidebarToggle");
+    const sidebar = document.getElementById("sidebar");
+    const body = document.body;
+    const closeBtn = document.getElementById("closeSidebar");
+
+    if (!sessionStorage.getItem('splashShown')) {
+      let percent = 0;
+      const interval = setInterval(() => {
+        percent += 2;
+        progress.style.width = percent + "%";
+        if (percent >= 100) {
+          clearInterval(interval);
+          splash.classList.add("fade-out");
+          sessionStorage.setItem('splashShown', 'true');
         }
+      }, 25);
+    } else {
+      splash.style.display = "none";
+    }
 
-        const modalDiv = document.createElement('div');
-        modalDiv.classList.add('modal', 'fade');
-        modalDiv.tabIndex = -1;
-        modalDiv.innerHTML = `
-            <div class="modal-dialog modal-xl modal-dialog-centered">
-              <div class="modal-content" style="background-color: #525252; color: #f6d4b1;">
-                <div class="modal-header border-0">
-                  <h5 class="modal-title">PDF Preview</h5>
-                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center">
-                  <iframe src="${embedUrl}" style="width:100%;height:80vh;" frameborder="0"></iframe>
-                </div>
-              </div>
-            </div>
-        `;
-        document.body.appendChild(modalDiv);
-        const bsModal = new bootstrap.Modal(modalDiv);
-        bsModal.show();
-        modalDiv.addEventListener('hidden.bs.modal', () => modalDiv.remove());
+    toggleButton.addEventListener("click", () => {
+      const isOpen = sidebar.style.left === "0px";
+      sidebar.style.left = isOpen ? "-100vw" : "0px";
+      body.classList.toggle("menu-open", !isOpen);
     });
-});
 
-// Splash screen logic
-window.addEventListener('load', () => {
-    const splash = document.getElementById('splash-screen');
-    const progress = document.getElementById('progress-bar');
-    let width = 0;
-    const interval = setInterval(() => {
-        width += Math.random() * 10;
-        if (width >= 100) {
-            width = 100;
-            clearInterval(interval);
-            splash.classList.add('fade-out');
-            setTimeout(() => splash.remove(), 1000);
-        }
-        progress.style.width = width + '%';
-    }, 200);
-});
+    closeBtn.addEventListener("click", () => {
+      sidebar.style.left = "-100vw";
+      body.classList.remove("menu-open");
+    });
 
-// Sidebar logic
-const sidebar = document.getElementById('sidebar');
-const toggleBtn = document.getElementById('sidebarToggle');
-const closeBtn = document.getElementById('closeSidebar');
+    document.addEventListener('click', (e) => {
+      if (sidebar.style.left === "0px" &&
+          !sidebar.contains(e.target) &&
+          !toggleButton.contains(e.target)) {
+        sidebar.style.left = "-100vw";
+        body.classList.remove("menu-open");
+      }
+    });
 
-toggleBtn.addEventListener('click', () => {
-    sidebar.style.left = '0';
-    document.body.classList.add('menu-open');
-});
+    let selectedSpecialty = '';
+    const semesterModal = new bootstrap.Modal(document.getElementById('semesterModal'));
 
-closeBtn.addEventListener('click', () => {
-    sidebar.style.left = '-100vw';
-    document.body.classList.remove('menu-open');
-});
-
-// Specialty modal (S1/S2 choice)
-document.querySelectorAll('[data-specialty]').forEach(link => {
-    link.addEventListener('click', e => {
+    document.querySelectorAll('a[data-specialty]').forEach(link => {
+      link.addEventListener('click', function(e) {
         e.preventDefault();
-        const specialty = link.dataset.specialty;
-        const modalEl = document.getElementById('semesterModal');
-        const modal = new bootstrap.Modal(modalEl);
-        modal.show();
+        selectedSpecialty = this.getAttribute('data-specialty');
 
-        document.getElementById('btnS1').onclick = () => {
-            window.location.href = `pages/${specialty}/S1/index.html`;
-        };
-        document.getElementById('btnS2').onclick = () => {
-            window.location.href = `pages/${specialty}/S2/index.html`;
-        };
+        sidebar.style.left = "-100vw";
+        body.classList.remove("menu-open");
+
+        semesterModal.show();
+      });
     });
-});
+
+    document.getElementById('btnS1').addEventListener('click', () => {
+      if (selectedSpecialty) {
+        window.location.href = `specialties/${selectedSpecialty.toLowerCase()}/s1.html`;
+      }
+    });
+
+    document.getElementById('btnS2').addEventListener('click', () => {
+      if (selectedSpecialty) {
+        window.location.href = `specialties/${selectedSpecialty.toLowerCase()}/s2.html`;
+      }
+    });
+  </script>
+
+  <script>
+  (function(){var a=document.createElement("script");a.src="https://va.vercel-scripts.com/v1/script.js";a.defer=true;document.head.appendChild(a)})();
 </script>
+
+<!-- PDF Preview Modal -->
+<div class="modal fade" id="pdfPreviewModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content" style="background-color:#525252; color:#f6d4b1;">
+      <div class="modal-header border-0">
+        <h5 class="modal-title w-100">Preview</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-0">
+        <iframe id="pdfPreviewFrame" src="" style="width:100%; height:80vh;" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const previewLinks = document.querySelectorAll('.preview-pdf');
+const pdfModal = new bootstrap.Modal(document.getElementById('pdfPreviewModal'));
+const pdfFrame = document.getElementById('pdfPreviewFrame');
+
+function isMobile() {
+  return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+}
+
+previewLinks.forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const pdfUrl = link.getAttribute('data-preview');
+
+    if (isMobile()) {
+      // Only render actual PDFs in mobile modal
+      if (!pdfUrl.endsWith('.pdf')) {
+        // For Google Docs or links, open in new tab
+        window.open(pdfUrl, '_blank');
+        return;
+      }
+
+      pdfjsLib.getDocument(pdfUrl).promise.then(pdf => {
+        pdf.getPage(1).then(page => {
+          const viewport = page.getViewport({ scale: 1.5 });
+          pdfCanvas.width = viewport.width;
+          pdfCanvas.height = viewport.height;
+          page.render({ canvasContext: ctx, viewport: viewport });
+          pdfMobileModal.show();
+        });
+      });
+
+    } else {
+      // Desktop → iframe modal
+      pdfFrame.src = pdfUrl;
+      pdfModal.show();
+    }
+  });
+});
+
+
+// Clear iframe when modal closes to free memory
+document.getElementById('pdfPreviewModal').addEventListener('hidden.bs.modal', () => {
+  pdfFrame.src = '';
+});
+const pdfMobileModal = new bootstrap.Modal(document.getElementById('pdfMobileModal'));
+const pdfCanvas = document.getElementById('pdfMobileCanvas');
+const ctx = pdfCanvas.getContext('2d');
+
+</script>
+<div class="modal fade" id="pdfMobileModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content" style="background-color:#525252; color:#f6d4b1;">
+      <div class="modal-header border-0">
+        <h5 class="modal-title w-100">PDF Preview</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-0" style="height:80vh;">
+        <canvas id="pdfMobileCanvas" style="width:100%; height:100%;"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
