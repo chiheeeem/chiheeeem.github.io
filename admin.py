@@ -3,7 +3,6 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 from bs4 import BeautifulSoup
 
-# --- CONFIG ---
 base_path = r"D:\Hichem\Siteweb\chiheeeem.github.io\specialties"
 
 def get_modules(file_path):
@@ -167,14 +166,12 @@ def update_modules(*args):
                 module_menu.current(0)
                 refresh_links_list()
 
-# --- GUI ---
 root = tk.Tk()
 root.title("Course Link Manager")
 root.geometry("800x500")
 
-# Make grid expandable
-root.grid_rowconfigure(8, weight=1)  # Listbox row
-root.grid_columnconfigure(1, weight=1)  # Inputs column
+root.grid_rowconfigure(8, weight=1) 
+root.grid_columnconfigure(1, weight=1)  
 
 ttk.Label(root, text="Specialty:").grid(row=0, column=0, padx=5, pady=5, sticky="w")
 specialty_var = tk.StringVar()
@@ -203,16 +200,13 @@ ttk.Button(root, text="Add Link", command=add_link, width=25).grid(row=5, column
 ttk.Button(root, text="Modify Link", command=modify_link, width=25).grid(row=6, column=0, columnspan=2, pady=5)
 ttk.Button(root, text="Delete Link", command=delete_link, width=25).grid(row=7, column=0, columnspan=2, pady=5)
 
-# Make Listbox expandable
 link_listbox = tk.Listbox(root)
 link_listbox.grid(row=8, column=0, columnspan=2, padx=5, pady=10, sticky="nsew")
 
-# Scrollbar
 scrollbar = ttk.Scrollbar(root, orient="vertical", command=link_listbox.yview)
 scrollbar.grid(row=8, column=2, sticky="ns", pady=10)
 link_listbox.config(yscrollcommand=scrollbar.set)
 
-# Update module dropdown when specialty/semester changes
 specialty_var.trace_add("write", update_modules)
 semester_var.trace_add("write", update_modules)
 module_var.trace_add("write", lambda *args: refresh_links_list())

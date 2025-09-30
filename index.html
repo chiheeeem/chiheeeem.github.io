@@ -274,14 +274,13 @@
     .bios-box {
   font-family: 'Press Start 2P', monospace;
   font-size: 14px;
-  background-color: #525252; /* your theme’s dark gray */
-  color: #f6d4b1; /* your theme’s sand color */
+  background-color: #525252; 
+  color: #f6d4b1; 
   padding: 20px;
-  border: 2px dashed #f6d4b1; /* dashed retro border */
+  border: 2px dashed #f6d4b1; 
   box-shadow: 0 0 12px rgba(0,0,0,0.4);
 }
 
-/* keep list tidy */
 .bios-box ul {
   padding: 0;
   margin: 0;
@@ -297,16 +296,16 @@
 }
 
 .bios-box .file-name {
-  flex: 1;              /* take all available space */
-  white-space: nowrap;  /* stay on one line */
-  overflow: hidden;     /* prevent wrapping */
+  flex: 1;             
+  white-space: nowrap;  
+  overflow: hidden;     
 }
 
 .bios-box a {
   color: #f6d4b1;
   text-decoration: none;
-  margin-left: 12px;    /* little space from text */
-  flex-shrink: 0;       /* don’t shrink the button */
+  margin-left: 12px;    
+  flex-shrink: 0;       
 }
 
 .bios-box a:hover {
@@ -458,7 +457,6 @@ body.vhs-disabled::after {
     </div>
   </div>
 
-<!-- PDF Viewer Modal -->
 <div class="modal fade" id="pdfModal" tabindex="-1" aria-labelledby="pdfModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl modal-dialog-centered">
     <div class="modal-content" style="background-color: #525252; color: #f6d4b1; font-family: 'Press Start 2P', monospace;">
@@ -556,13 +554,11 @@ body.vhs-disabled::after {
 const vhsOverlay = document.getElementById('vhs-overlay');
 const pdfModalEl = document.getElementById('pdfModal');
 
-// Disable VHS when PDF opens
 pdfModalEl.addEventListener('show.bs.modal', () => {
   vhsOverlay.classList.add('vhs-disabled');
   document.body.classList.add('vhs-disabled');
 });
 
-// Re-enable VHS when PDF closes
 pdfModalEl.addEventListener('hidden.bs.modal', () => {
   vhsOverlay.classList.remove('vhs-disabled');
   document.body.classList.remove('vhs-disabled');
@@ -577,14 +573,12 @@ pdfModalEl.addEventListener('hidden.bs.modal', () => {
       e.preventDefault();
       const pdfUrl = link.getAttribute('data-pdf');
 
-      // Mobile-friendly: Use Google Docs Viewer
 pdfFrame.src = `https://docs.google.com/gview?url=${encodeURIComponent(pdfUrl)}&embedded=true`;
 
       pdfModal.show();
     });
   });
 
-  // Clear iframe when modal is closed
   document.getElementById('pdfModal').addEventListener('hidden.bs.modal', () => {
     pdfFrame.src = "";
   });
