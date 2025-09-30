@@ -398,26 +398,26 @@
   <h2 class="mb-4" style="font-family: 'Press Start 2P', monospace;">New stuff !</h2>
   <div class="bios-box text-start">
     <ul class="list-unstyled m-0">
-            <li>
+      <li>
         &gt; <span class="file-name"> Mails enseignants </span>
-        <a href="https://docs.google.com/document/d/1sOXJDugOzbr_xYdJ9F-I22DLhQVN8YP6IxlkmRUkyn0/edit?usp=sharing" download>[Go]</a>
+        <a href="#" class="preview-pdf" data-preview="https://docs.google.com/document/d/1sOXJDugOzbr_xYdJ9F-I22DLhQVN8YP6IxlkmRUkyn0/edit?usp=sharing">[PREVIEW]</a>
+        <a href="https://docs.google.com/document/d/1sOXJDugOzbr_xYdJ9F-I22DLhQVN8YP6IxlkmRUkyn0/edit?usp=sharing" download>[DOWNLOAD]</a>
       </li>
       <li>
         &gt; <span class="file-name"> Emploi RT </span>
-          <a href="Emplois du temps M1 RT Semestre 1  2025-2026.pdf" target="_blank">[OPEN]</a>
+        <a href="#" class="preview-pdf" data-preview="Emplois du temps M1 RT Semestre 1  2025-2026.pdf">[PREVIEW]</a>
         <a href="Emplois du temps M1 RT Semestre 1  2025-2026.pdf" download>[DOWNLOAD]</a>
       </li>
       <li>
-  > <span class="file-name"> Emploi ST</span>
-  <a href="Emplois-du-temps-final-M1-ST-Semestre-1-2025-2026.pdf" target="_blank">[OPEN]</a>
-  <a href="Emplois-du-temps-final-M1-ST-Semestre-1-2025-2026.pdf" download>[DOWNLOAD]</a>
-</li>
-
+        &gt; <span class="file-name"> Emploi ST</span>
+        <a href="#" class="preview-pdf" data-preview="Emplois-du-temps-final-M1-ST-Semestre-1-2025-2026.pdf">[PREVIEW]</a>
+        <a href="Emplois-du-temps-final-M1-ST-Semestre-1-2025-2026.pdf" download>[DOWNLOAD]</a>
+      </li>
       <li>
         &gt; <span class="file-name"> Ask your questions here</span>
-        <a href="https://forms.gle/UkxjXS7jzgKYTcbLA" download>[Go]</a>
+        <a href="#" class="preview-pdf" data-preview="https://forms.gle/UkxjXS7jzgKYTcbLA">[PREVIEW]</a>
+        <a href="https://forms.gle/UkxjXS7jzgKYTcbLA" download>[DOWNLOAD]</a>
       </li>
-      
     </ul>
   </div>
 </section>
@@ -522,6 +522,41 @@
 
   <script>
   (function(){var a=document.createElement("script");a.src="https://va.vercel-scripts.com/v1/script.js";a.defer=true;document.head.appendChild(a)})();
+</script>
+
+<!-- PDF Preview Modal -->
+<div class="modal fade" id="pdfPreviewModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content" style="background-color:#525252; color:#f6d4b1;">
+      <div class="modal-header border-0">
+        <h5 class="modal-title w-100">Preview</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-0">
+        <iframe id="pdfPreviewFrame" src="" style="width:100%; height:80vh;" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const previewLinks = document.querySelectorAll('.preview-pdf');
+const pdfModal = new bootstrap.Modal(document.getElementById('pdfPreviewModal'));
+const pdfFrame = document.getElementById('pdfPreviewFrame');
+
+previewLinks.forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();  // prevent default link behavior
+    const pdfUrl = link.getAttribute('data-preview');
+    pdfFrame.src = pdfUrl;   // load PDF only when clicked
+    pdfModal.show();         // open the modal
+  });
+});
+
+// Clear iframe when modal closes to free memory
+document.getElementById('pdfPreviewModal').addEventListener('hidden.bs.modal', () => {
+  pdfFrame.src = '';
+});
 </script>
 
 </body>
