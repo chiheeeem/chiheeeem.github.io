@@ -404,12 +404,12 @@
     </li>
     <li>
       &gt; <span class="file-name"> Emploi RT </span>
-      <a href="#" class="pdf-link" data-pdf="Emplois du temps M1 RT Semestre 1  2025-2026.pdf">[OPEN]</a>
+      <a href="#" class="pdf-link" data-pdf="https://chiheeeem.github.io/Telecom-Courses/Emplois%20du%20temps%20M1%20RT%20Semestre%201%202025-2026.pdf">[OPEN]</a>
       <a href="Emplois du temps M1 RT Semestre 1  2025-2026.pdf" download>[DOWNLOAD]</a>
     </li>
     <li>
       &gt; <span class="file-name"> Emploi ST</span>
-      <a href="#" class="pdf-link" data-pdf="Emplois-du-temps-final-M1-ST-Semestre-1-2025-2026.pdf">[OPEN]</a>
+      <a href="#" class="pdf-link" data-pdf="https://chiheeeem.github.io/Telecom-Courses/Emplois-du-temps-final-M1-ST-Semestre-1-2025-2026.pdf">[OPEN]</a>
       <a href="Emplois-du-temps-final-M1-ST-Semestre-1-2025-2026.pdf" download>[DOWNLOAD]</a>
     </li>
     <li>
@@ -547,7 +547,10 @@
     link.addEventListener('click', (e) => {
       e.preventDefault();
       const pdfUrl = link.getAttribute('data-pdf');
-      pdfFrame.src = pdfUrl;
+
+      // Mobile-friendly: Use Google Docs Viewer
+      pdfFrame.src = `https://docs.google.com/gview?url=${window.location.origin}/${encodeURIComponent(pdfUrl)}&embedded=true`;
+
       pdfModal.show();
     });
   });
@@ -557,6 +560,7 @@
     pdfFrame.src = "";
   });
 </script>
+
 
 
 </body>
