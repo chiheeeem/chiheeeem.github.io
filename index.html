@@ -396,30 +396,29 @@
   
 <section class="container my-5 text-center">
   <h2 class="mb-4" style="font-family: 'Press Start 2P', monospace;">New stuff !</h2>
-  <div class="bios-box text-start">
-    <ul class="list-unstyled m-0">
-            <li>
-        &gt; <span class="file-name"> Mails enseignants </span>
-        <a href="https://docs.google.com/document/d/1sOXJDugOzbr_xYdJ9F-I22DLhQVN8YP6IxlkmRUkyn0/edit?usp=sharing" download>[Go]</a>
-      </li>
-      <li>
-        &gt; <span class="file-name"> Emploi RT </span>
-          <a href="Emplois du temps M1 RT Semestre 1  2025-2026.pdf" target="_blank">[OPEN]</a>
-        <a href="Emplois du temps M1 RT Semestre 1  2025-2026.pdf" download>[DOWNLOAD]</a>
-      </li>
-      <li>
-  > <span class="file-name"> Emploi ST</span>
-  <a href="Emplois-du-temps-final-M1-ST-Semestre-1-2025-2026.pdf" target="_blank">[OPEN]</a>
-  <a href="Emplois-du-temps-final-M1-ST-Semestre-1-2025-2026.pdf" download>[DOWNLOAD]</a>
-</li>
+<div class="bios-box text-start">
+  <ul class="list-unstyled m-0">
+    <li>
+      &gt; <span class="file-name"> Mails enseignants </span>
+      <a href="https://docs.google.com/document/d/1sOXJDugOzbr_xYdJ9F-I22DLhQVN8YP6IxlkmRUkyn0/edit?usp=sharing" download>[Go]</a>
+    </li>
+    <li>
+      &gt; <span class="file-name"> Emploi RT </span>
+      <a href="#" class="pdf-link" data-pdf="Emplois du temps M1 RT Semestre 1  2025-2026.pdf">[OPEN]</a>
+      <a href="Emplois du temps M1 RT Semestre 1  2025-2026.pdf" download>[DOWNLOAD]</a>
+    </li>
+    <li>
+      &gt; <span class="file-name"> Emploi ST</span>
+      <a href="#" class="pdf-link" data-pdf="Emplois-du-temps-final-M1-ST-Semestre-1-2025-2026.pdf">[OPEN]</a>
+      <a href="Emplois-du-temps-final-M1-ST-Semestre-1-2025-2026.pdf" download>[DOWNLOAD]</a>
+    </li>
+    <li>
+      &gt; <span class="file-name"> Ask your questions here</span>
+      <a href="https://forms.gle/UkxjXS7jzgKYTcbLA" download>[Go]</a>
+    </li>
+  </ul>
+</div>
 
-      <li>
-        &gt; <span class="file-name"> Ask your questions here</span>
-        <a href="https://forms.gle/UkxjXS7jzgKYTcbLA" download>[Go]</a>
-      </li>
-      
-    </ul>
-  </div>
 </section>
 
 
@@ -446,6 +445,22 @@
       </div>
     </div>
   </div>
+
+<!-- PDF Viewer Modal -->
+<div class="modal fade" id="pdfModal" tabindex="-1" aria-labelledby="pdfModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content" style="background-color: #525252; color: #f6d4b1; font-family: 'Press Start 2P', monospace;">
+      <div class="modal-header border-0">
+        <h5 class="modal-title" id="pdfModalLabel">PDF Viewer</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-0" style="height: 80vh;">
+        <iframe id="pdfFrame" src="" style="width:100%; height:100%; border:none;"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -523,6 +538,26 @@
   <script>
   (function(){var a=document.createElement("script");a.src="https://va.vercel-scripts.com/v1/script.js";a.defer=true;document.head.appendChild(a)})();
 </script>
+
+<script>
+  const pdfModal = new bootstrap.Modal(document.getElementById('pdfModal'));
+  const pdfFrame = document.getElementById('pdfFrame');
+
+  document.querySelectorAll('.pdf-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const pdfUrl = link.getAttribute('data-pdf');
+      pdfFrame.src = pdfUrl;
+      pdfModal.show();
+    });
+  });
+
+  // Clear iframe when modal is closed
+  document.getElementById('pdfModal').addEventListener('hidden.bs.modal', () => {
+    pdfFrame.src = "";
+  });
+</script>
+
 
 </body>
 </html>
