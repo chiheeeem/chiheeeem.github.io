@@ -38,18 +38,29 @@
       top: 20px;
       left: 20px;
       z-index: 1100;
-      background-color: #525252;
-      color: #f6d4b1;
-      border: none;
-      padding: 6px 20px;
+      /* Style matching .back-button */
+      background-color: #f6d4b1;
+      color: #1a1a1a;
+      border: 2px solid #1a1a1a;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 10px;
+      /* MODIFIED: Increased padding for larger size */
+      padding: 12px 16px;
+      text-decoration: none;
+      border-radius: 6px;
+      box-shadow: 2px 2px 0 #1a1a1a;
+      transition: transform 0.2s ease;
       cursor: pointer;
-      border-radius: 0;
-      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.25);
+    }
+
+    #sidebarToggle:hover {
+      transform: scale(1.05);
+      box-shadow: 2px 2px 0 #1a1a1a;
     }
 
     #sidebarToggle svg rect {
       height: 6px;
-      fill: #f6d4b1;
+      fill: currentColor;
     }
 
     #closeSidebar {
@@ -62,8 +73,8 @@
       color: #f6d4b1;
       cursor: pointer;
     }
-    
-    
+
+
     #sidebar a {
       display: block;
       margin: 15px 0;
@@ -78,7 +89,7 @@
       background-color: #444;
       transform: translateY(-2px);
     }
-    
+
 
     body {
       font-family: 'Inter', sans-serif;
@@ -146,7 +157,8 @@
   border: 2px solid #1a1a1a;
   font-family: 'Press Start 2P', monospace;
   font-size: 10px;
-  padding: 10px 14px;
+  /* MODIFIED: Increased padding to match the new #sidebarToggle size */
+  padding: 12px 16px;
   text-decoration: none;
   border-radius: 6px;
   box-shadow: 2px 2px 0 #1a1a1a;
@@ -214,7 +226,7 @@
         <div class="accordion-body">
           <a href="https://drive.google.com/drive/folders/1v1xlicQzk_UqXmsHH-p0dZkdVEK5Nkpr?usp=drive_link" target="_blank">Cours 1</a>
           <a href="https://drive.google.com/drive/folders/1oEZYBt71hyvz2YU3PXiIURcO0TrWT9Ua?usp=drive_link" target="_blank">Cours 2</a>
-          <a href="https://drive.google.com/drive/folders/1ztQfMSxrZb7oyta1p01d9cjNIdUNgCgn?usp=drive_link" target="_blank">Cours 3</a>
+          <a href="https://drive.google.com/drive/folders/1ztQfMSxrZb7oyta1p01d9cjNIdUNgCgn?usp=drive_link" target="_blank">Cours 2</a>
           <a href="https://drive.google.com/drive/folders/1xRNRNRv5bHTJG47rqmqd1Ta0vw16V_rS?usp=drive_link" target="_blank">TD 1 </a>
           <a href="https://drive.google.com/drive/folders/1qJIt6ZBFbIuC1kctmj7sLVDn2zjREuU8?usp=drive_link" target="_blank">TD 2 </a>
           <a href="https://drive.google.com/drive/folders/1IgE9B7pdGIKZgSGj3yDLDI6Xy4PsCdva?usp=drive_link" target="_blank">TD 3 </a>
@@ -312,7 +324,7 @@
       </div>
     </div>
   </div>
-  
+
   <br>
   <a href="../../index.html" class="back-button"><i class="fas fa-home"></i></a>
   <div class="modal fade" id="semesterModal" tabindex="-1" aria-labelledby="semesterModalLabel" aria-hidden="true">

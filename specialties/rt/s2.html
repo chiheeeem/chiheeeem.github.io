@@ -9,8 +9,8 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-<link rel="icon" type="image/png" href="favicon.png">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link rel="icon" type="image/png" href="favicon.png">
 
 
   <style>
@@ -33,23 +33,33 @@
       padding: 70px 20px 20px 20px;
     }
 
+    /* Styles for the Menu Button (matching the enlarged Home button) */
     #sidebarToggle {
       position: fixed;
       top: 20px;
       left: 20px;
       z-index: 1100;
-      background-color: #525252;
-      color: #f6d4b1;
-      border: none;
-      padding: 6px 20px;
+      background-color: #f6d4b1;
+      color: #1a1a1a;
+      border: 2px solid #1a1a1a;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 10px;
+      padding: 12px 16px; /* Larger, consistent size */
+      text-decoration: none;
+      border-radius: 6px;
+      box-shadow: 2px 2px 0 #1a1a1a;
+      transition: transform 0.2s ease;
       cursor: pointer;
-      border-radius: 0;
-      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.25);
+    }
+    
+    #sidebarToggle:hover {
+      transform: scale(1.05);
+      box-shadow: 2px 2px 0 #1a1a1a;
     }
 
     #sidebarToggle svg rect {
       height: 6px;
-      fill: #f6d4b1;
+      fill: currentColor; 
     }
 
     #closeSidebar {
@@ -113,15 +123,15 @@
       background-color: #e5c9a4;
     }
 
-.accordion-body a {
-  display: block;
-  padding: 6px 0;
-  color: #f6d4b1;
-  font-size: 12px;
-  text-decoration: none;
-  font-family: 'Press Start 2P', monospace;
-  letter-spacing: 1px;
-}
+    .accordion-body a {
+      display: block;
+      padding: 6px 0;
+      color: #f6d4b1;
+      font-size: 12px;
+      text-decoration: none;
+      font-family: 'Press Start 2P', monospace;
+      letter-spacing: 1px;
+    }
 
 
     .accordion-item {
@@ -135,28 +145,28 @@
       background-color: #383838;
     }
 
-.back-button {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background-color: #f6d4b1;
-  color: #1a1a1a;
-  border: 2px solid #1a1a1a;
-  font-family: 'Press Start 2P', monospace;
-  font-size: 10px;
-  padding: 10px 14px;
-  text-decoration: none;
-  border-radius: 6px;
-  box-shadow: 2px 2px 0 #1a1a1a;
-  z-index: 1000;
-  transition: transform 0.2s ease;
-}
+    /* Styles for the Home Button (larger, consistent size) */
+    .back-button {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #f6d4b1;
+      color: #1a1a1a;
+      border: 2px solid #1a1a1a;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 10px;
+      padding: 12px 16px; /* Larger, consistent size */
+      text-decoration: none;
+      border-radius: 6px;
+      box-shadow: 2px 2px 0 #1a1a1a;
+      z-index: 1000;
+      transition: transform 0.2s ease;
+    }
 
-.back-button:hover {
-  transform: scale(1.05);
-  box-shadow: 2px 2px 0 #1a1a1a;
-}
-
+    .back-button:hover {
+      transform: scale(1.05);
+      box-shadow: 2px 2px 0 #1a1a1a;
+    }
 
     .container {
       max-width: 700px;
@@ -166,10 +176,11 @@
 </head>
 <body>
   <script>
+  // Redirect to Coming Soon unless ?admin is in the URL
   if (!window.location.search.includes("admin")) {
     window.location.href = "../../soon.html";
   }
-</script>
+  </script>
 
 
 <button id="sidebarToggle" aria-label="Toggle menu">
@@ -197,7 +208,7 @@
 
   <div class="accordion" id="modulesAccordion">
 
-       <div class="accordion-item">
+    <div class="accordion-item">
       <h2 class="accordion-header" id="heading1">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1">
           Communication numérique avancée
@@ -244,6 +255,7 @@
       <div id="collapse4" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
         <div class="accordion-body">
           <a href="#">Cours 1</a>
+          <a href="#">Cours 2</a>
         </div>
       </div>
     </div>

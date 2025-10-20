@@ -33,24 +33,36 @@
       padding: 70px 20px 20px 20px;
     }
 
+    /* MODIFIED: Updated styles for #sidebarToggle to match the larger .back-button */
     #sidebarToggle {
       position: fixed;
       top: 20px;
       left: 20px;
       z-index: 1100;
-      background-color: #525252;
-      color: #f6d4b1;
-      border: none;
-      padding: 6px 20px;
+      /* Style matching .back-button */
+      background-color: #f6d4b1;
+      color: #1a1a1a;
+      border: 2px solid #1a1a1a;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 10px;
+      padding: 12px 16px; /* Larger, consistent size */
+      text-decoration: none;
+      border-radius: 6px;
+      box-shadow: 2px 2px 0 #1a1a1a;
+      transition: transform 0.2s ease;
       cursor: pointer;
-      border-radius: 0;
-      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.25);
+    }
+
+    #sidebarToggle:hover {
+      transform: scale(1.05);
+      box-shadow: 2px 2px 0 #1a1a1a;
     }
 
     #sidebarToggle svg rect {
       height: 6px;
-      fill: #f6d4b1;
+      fill: currentColor; /* Changed to use button's color */
     }
+    /* END MODIFIED #sidebarToggle */
 
     #closeSidebar {
       position: absolute;
@@ -135,6 +147,7 @@
       background-color: #383838;
     }
 
+/* MODIFIED: Updated styles for .back-button (Home button) */
 .back-button {
   position: fixed;
   top: 20px;
@@ -144,7 +157,7 @@
   border: 2px solid #1a1a1a;
   font-family: 'Press Start 2P', monospace;
   font-size: 10px;
-  padding: 10px 14px;
+  padding: 12px 16px; /* Larger, consistent size */
   text-decoration: none;
   border-radius: 6px;
   box-shadow: 2px 2px 0 #1a1a1a;
@@ -156,6 +169,7 @@
   transform: scale(1.05);
   box-shadow: 2px 2px 0 #1a1a1a;
 }
+/* END MODIFIED .back-button */
 
 
     .container {
@@ -198,7 +212,7 @@
 
   <div class="accordion" id="modulesAccordion">
 
-      <div class="accordion-item">
+    <div class="accordion-item">
       <h2 class="accordion-header" id="heading1">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1">
           Communication numérique avancée
