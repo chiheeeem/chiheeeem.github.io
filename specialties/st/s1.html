@@ -125,15 +125,23 @@
       background-color: #e5c9a4;
     }
 
-.accordion-body a {
-  display: block;
-  padding: 6px 0;
-  color: #f6d4b1;
-  font-size: 12px;
-  text-decoration: none;
-  font-family: 'Press Start 2P', monospace;
-  letter-spacing: 1px;
-}
+    .accordion-body a {
+      display: block;
+      padding: 6px 0;
+      color: #f6d4b1;
+      font-size: 12px;
+      text-decoration: none;
+      font-family: 'Press Start 2P', monospace;
+      letter-spacing: 1px;
+    }
+    
+    /* CLASSE AJOUTÉE (Rouge vif, sans gras) */
+    .placeholder-alert {
+      color: #FF0000 !important; /* Rouge vif */
+      font-size: 14px !important;
+      /* Retrait du gras et de l'animation */
+    }
+    /* FIN CLASSE AJOUTÉE */
 
 
     .accordion-item {
@@ -175,6 +183,11 @@
       max-width: 700px;
       margin: auto;
     }
+      @media (max-width: 768px) {
+    h1 {
+      margin-top: 75px !important;
+    }
+  }
   </style>
 </head>
 <body>
@@ -200,8 +213,12 @@
 
 <div class="container text-center">
   <h1>ST - Systèmes Télécom S1</h1>
-  <p class="lead">Wch tsh9 l3ziz</p>
-
+  <div class="text-center mt-2 mb-4" style="font-family: 'Press Start 2P', monospace; font-size: 12px; color: #00FF00;">
+    <ul style="list-style-type: square; padding-left: 20px; display: inline-block; text-align: left;">
+      <li>If a link leads to the wrong page or an unexpected error, please contact me.</li>
+      <li>If it says “page not ready,” then its just not ready b39lek.</li>
+    </ul>
+  </div>
   <div class="accordion" id="modulesAccordion">
     <div class="accordion-item">
       <h2 class="accordion-header" id="heading1">
@@ -213,6 +230,11 @@
         <div class="accordion-body">
           <a href="#">Cours 1</a>
           <a href="#">Cours 2</a>
+          <a href="#" class="placeholder-alert">Cours 25/26</a> <a href="#">TD 1</a>
+          <a href="#">TD 2</a>
+          <a href="#" class="placeholder-alert">TD 25/26</a> <a href="#">Examens 1</a>
+          <a href="#">Examens 2</a>
+          <a href="../../soon.html" target="_blank">Recordings</a>
         </div>
       </div>
     </div>
@@ -225,6 +247,9 @@
       <div id="collapse2" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
         <div class="accordion-body">
           <a href="#">Cours 1</a>
+          <a href="#" class="placeholder-alert">Cours 25/26</a> <a href="#">TD 1</a>
+          <a href="#" class="placeholder-alert">TD 25/26</a> <a href="#">Examens 1</a>
+          <a href="../../soon.html" target="_blank">Recordings</a>
         </div>
       </div>
     </div>
@@ -237,6 +262,9 @@
       <div id="collapse3" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
         <div class="accordion-body">
           <a href="#">Cours 1</a>
+          <a href="#" class="placeholder-alert">Cours 25/26</a> <a href="#">TD 1</a>
+          <a href="#" class="placeholder-alert">TD 25/26</a> <a href="#">Examens 1</a>
+          <a href="../../soon.html" target="_blank">Recordings</a>
         </div>
       </div>
     </div>
@@ -250,6 +278,9 @@
       <div id="collapse4" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
         <div class="accordion-body">
           <a href="#">Cours 1</a>
+          <a href="#" class="placeholder-alert">Cours 25/26</a> <a href="#">TD 1</a>
+          <a href="#" class="placeholder-alert">TD 25/26</a> <a href="#">Examens 1</a>
+          <a href="../../soon.html" target="_blank">Recordings</a>
         </div>
       </div>
     </div>
@@ -263,6 +294,9 @@
       <div id="collapse5" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
         <div class="accordion-body">
           <a href="#">Cours 1</a>
+          <a href="#" class="placeholder-alert">Cours 25/26</a> <a href="#">TD 1</a>
+          <a href="#" class="placeholder-alert">TD 25/26</a> <a href="#">Examens 1</a>
+          <a href="../../soon.html" target="_blank">Recordings</a>
         </div>
       </div>
     </div>
@@ -276,6 +310,9 @@
       <div id="collapse6" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
         <div class="accordion-body">
           <a href="#">Cours 1</a>
+          <a href="#" class="placeholder-alert">Cours 25/26</a> <a href="#">TD 1</a>
+          <a href="#" class="placeholder-alert">TD 25/26</a> <a href="#">Examens 1</a>
+          <a href="../../soon.html" target="_blank">Recordings</a>
         </div>
       </div>
     </div>
@@ -289,6 +326,8 @@
       <div id="collapse7" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
         <div class="accordion-body">
           <a href="#">Cours 1</a>
+          <a href="#" class="placeholder-alert">Cours 25/26</a> <a href="#">Examens 1</a>
+          <a href="../../soon.html" target="_blank">Recordings</a>
         </div>
       </div>
     </div>
@@ -303,6 +342,8 @@
         <div class="accordion-body">
           <a href="#">TP 1</a>
           <a href="#">TP 2</a>
+          <a href="#">TP 3</a>
+          <a href="../../soon.html" target="_blank">Codes</a>
         </div>
       </div>
     </div>
