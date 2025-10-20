@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Telecom Courses</title>
@@ -20,8 +19,7 @@
   <meta property="og:url" content="https://chiheeeem.github.io/Telecom-Courses/index.html?v=3" />
   <meta property="og:type" content="website" />
 
-  <!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -241,24 +239,36 @@
       padding: 70px 20px 20px 20px;
     }
 
+    /* MODIFIED: Updated styles for #sidebarToggle to match the retro button aesthetic */
     #sidebarToggle {
       position: fixed;
       top: 20px;
       left: 20px;
       z-index: 1100;
-      background-color: #525252;
-      color: #f6d4b1;
-      border: none;
-      padding: 6px 20px;
+      /* Style matching retro button, keeping original colors */
+      background-color: #525252; /* Original background */
+      color: #f6d4b1; /* Original text/icon color */
+      border: 2px solid #f6d4b1; /* Border using text color */
+      font-family: 'Press Start 2P', monospace;
+      font-size: 10px;
+      padding: 12px 16px; /* Larger, consistent size */
+      text-decoration: none;
+      border-radius: 6px;
+      box-shadow: 2px 2px 0 #f6d4b1; /* Shadow using text color */
+      transition: transform 0.2s ease;
       cursor: pointer;
-      border-radius: 0;
-      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.25);
+    }
+
+    #sidebarToggle:hover {
+      transform: scale(1.05);
+      box-shadow: 2px 2px 0 #f6d4b1;
     }
 
     #sidebarToggle svg rect {
       height: 6px;
-      fill: #f6d4b1;
+      fill: currentColor; /* Use button's text color */
     }
+    /* END MODIFIED #sidebarToggle */
 
     #closeSidebar {
       position: absolute;
@@ -296,7 +306,7 @@
 }
 
 .bios-box .file-name {
-  flex: 1;             
+  flex: 1;           
   white-space: nowrap;  
   overflow: hidden;     
 }
